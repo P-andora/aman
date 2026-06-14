@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Новости и события Aman Hotel">
+    <meta name="keywords" content="новости, события, блог, отель">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Новости | Aman Hotel</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/flaticon.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    
+    <style>
+        /* ===== ДОПОЛНИТЕЛЬНЫЕ СТИЛИ ДЛЯ СТРАНИЦЫ НОВОСТЕЙ ===== */
+        
+        /* Фильтры */
+        .blog-filters {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .filter-btn {
+            display: inline-block;
+            padding: 8px 25px;
+            margin: 5px;
+            background: transparent;
+            border: 2px solid #c7a17a;
+            color: #c7a17a;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #c7a17a;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Анимации для карточек */
+        .blog-item {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        .blog-item:nth-child(1) { animation-delay: 0.1s; }
+        .blog-item:nth-child(2) { animation-delay: 0.2s; }
+        .blog-item:nth-child(3) { animation-delay: 0.3s; }
+        .blog-item:nth-child(4) { animation-delay: 0.4s; }
+        .blog-item:nth-child(5) { animation-delay: 0.5s; }
+        .blog-item:nth-child(6) { animation-delay: 0.6s; }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .blog-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .blog-item .set-bg {
+            transition: transform 0.5s ease;
+        }
+        
+        .blog-item:hover .set-bg {
+            transform: scale(1.05);
+        }
+        
+        .bi-text {
+            transition: all 0.3s ease;
+        }
+        
+        .blog-item:hover .bi-text {
+            transform: translateY(-5px);
+        }
+        
+        .b-tag {
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .blog-item:hover .b-tag {
+            background: #c7a17a;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+        
+        .bi-text h4 a {
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .blog-item:hover .bi-text h4 a {
+            color: #c7a17a;
+            transform: translateX(5px);
+        }
+        
+        .b-time {
+            transition: all 0.3s ease;
+        }
+        
+        .blog-item:hover .b-time {
+            color: #c7a17a;
+            padding-left: 5px;
+        }
+        
+        /* Кнопка загрузки */
+        .load-more {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .load-more a {
+            transition: all 0.3s ease;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+        
+        .load-more a:hover {
+            transform: scale(1.05);
+            background: #a8865f;
+            letter-spacing: 2px;
+            animation: none;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(199, 161, 122, 0.4);
+            }
+            70% {
+                transform: scale(1.02);
+                box-shadow: 0 0 0 10px rgba(199, 161, 122, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(199, 161, 122, 0);
+            }
+        }
+        
+        /* Счётчик новостей */
+        .news-counter {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: #888;
+        }
+        
+        .news-counter span {
+            color: #c7a17a;
+            font-weight: 600;
+        }
+        
+        /* Пустое состояние */
+        .no-news {
+            text-align: center;
+            padding: 60px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+        
+        .no-news i {
+            font-size: 48px;
+            color: #c7a17a;
+            margin-bottom: 20px;
+        }
+        
+        /* Мобильная версия */
+        @media (max-width: 768px) {
+            .filter-btn {
+                padding: 6px 18px;
+                font-size: 12px;
+            }
+            
+            .blog-filters {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Section Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="canvas-open">
+        <i class="icon_menu"></i>
+    </div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="canvas-close">
+            <i class="icon_close"></i>
+        </div>
+        <div class="search-icon search-switch">
+            <i class="icon_search"></i>
+        </div>
+        <div class="header-configure-area">
+            <a href="#" class="bk-btn">Бронировать</a>
+        </div>
+        <nav class="mainmenu mobile-menu">
+            <ul>
+                <li><a href="./index.html">Главная</a></li>
+                <li><a href="./rooms.html">Номера</a></li>
+                <li><a href="./about-us.html">О нас</a></li>
+                <li><a href="./blog-details.html">Подробности</a></li>
+                <li class="active"><a href="./blog.html">Новости</a></li>
+                <li><a href="./contact.html">Контакты</a></li>
+            </ul>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+        <div class="top-social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-tripadvisor"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
+        <ul class="top-widget">
+            <li><i class="fa fa-phone"></i> (12) 345 67890</li>
+            <li><i class="fa fa-envelope"></i> aman@gmail.com</li>
+        </ul>
+    </div>
+    <!-- Offcanvas Menu Section End -->
+
+    <!-- Header Section Begin -->
+    <header class="header-section header-normal">
+        <div class="top-nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="tn-left">
+                            <li><i class="fa fa-phone"></i> (12) 345 67890</li>
+                            <li><i class="fa fa-envelope"></i> aman@gmail.com</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="tn-right">
+                            <div class="top-social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-tripadvisor"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </div>
+                            <a href="#" class="bk-btn">Бронировать</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <div class="logo">
+                            <a href="./index.html">
+                                <img src="img/logo.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-10">
+                        <div class="nav-menu">
+                            <nav class="mainmenu">
+                                <ul>
+                                    <li><a href="./index.html">Главная</a></li>
+                                    <li><a href="./rooms.html">Номера</a></li>
+                                    <li><a href="./about-us.html">О нас</a></li>
+                                    <li><a href="./blog-details.html">Подробности</a></li>
+                                    <li class="active"><a href="./blog.html">Новости</a></li>
+                                    <li><a href="./contact.html">Контакты</a></li>
+                                </ul>
+                            </nav>
+                            <div class="nav-right search-switch">
+                                <i class="icon_search"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Breadcrumb Section Begin -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <h2>Новости и события</h2>
+                        <div class="bt-option">
+                            <a href="./index.html">Главная</a>
+                            <span>Новости</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Blog Section Begin -->
+    <section class="blog-section blog-page spad">
+        <div class="container">
+            <!-- Фильтры категорий -->
+            <div class="blog-filters">
+                <button class="filter-btn active" data-filter="all">Все новости</button>
+                <button class="filter-btn" data-filter="travel">Туристическая поездка</button>
+                <button class="filter-btn" data-filter="camping">Кемпинг</button>
+                <button class="filter-btn" data-filter="event">События</button>
+                <button class="filter-btn" data-filter="wine">Дегустации</button>
+                <button class="filter-btn" data-filter="yoga">Йога</button>
+            </div>
+            
+            <!-- Счётчик новостей -->
+            <div class="news-counter">
+                Показано <span id="visible-count">0</span> из <span id="total-count">0</span> новостей
+            </div>
+            
+            <div class="row" id="news-container">
+                <!-- Новости будут загружены через JS -->
+            </div>
+            
+            <div class="load-more">
+                <a href="#" id="load-more-btn" class="primary-btn">Загрузить больше</a>
+            </div>
+        </div>
+    </section>
+    <!-- Blog Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-text">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="ft-about">
+                            <div class="logo">
+                                <a href="#">
+                                    <img src="img/footer-logo.png" alt="">
+                                </a>
+                            </div>
+                            <p>Мы вдохновляем миллионы путешественников и привлекаем их внимание<br /> на 90 местных веб-сайтах</p>
+                            <div class="fa-social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-tripadvisor"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 offset-lg-1">
+                        <div class="ft-contact">
+                            <h6>Связаться с нами</h6>
+                            <ul>
+                                <li>(12) 345 67890</li>
+                                <li>aman@gmail.com</li>
+                                <li>Сочи, ул. Курортная, 15</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 offset-lg-1">
+                        <div class="ft-newslatter">
+                            <h6>Новостная рассылка</h6>
+                            <p>Получайте последние обновления и предложения.</p>
+                            <form id="subscribe-form" class="fn-form">
+                                <input type="email" id="subscribe-email" placeholder="Email" required>
+                                <button type="submit"><i class="fa fa-send"></i></button>
+                            </form>
+                            <div id="subscribe-message" style="margin-top: 10px; font-size: 12px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-option">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="co-text">
+                            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> Все права защищены <i class="fa fa-heart" aria-hidden="true"></i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search model Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch"><i class="icon_close"></i></div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Поиск по новостям...">
+            </form>
+        </div>
+    </div>
+    <!-- Search model end -->
+
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        // Данные новостей
+        const allNews = [
+            {
+                id: 1,
+                title: 'Абхазия: горы, озёра, тайны',
+                tag: 'Туристическая поездка',
+                category: 'travel',
+                date: '23 июня, 2024',
+                image: 'img/blog/blog-1.jpg',
+                link: 'blog-details.html'
+            },
+            {
+                id: 2,
+                title: 'Оптимальный выбор мобильного павильона',
+                tag: 'Кемпинг',
+                category: 'camping',
+                date: '21 июня, 2024',
+                image: 'img/blog/blog-2.jpg',
+                link: 'blog-details.html'
+            },
+            {
+                id: 3,
+                title: 'Скайпарк AJ Hackett',
+                tag: 'Событие',
+                category: 'event',
+                date: '19 июня, 2024',
+                image: 'img/blog/blog-3.jpg',
+                link: 'blog-details.html'
+            },
+            {
+                id: 4,
+                title: 'A Time Travel Postcard',
+                tag: 'Trivago',
+                category: 'travel',
+                date: '22 апреля, 2024',
+                image: 'img/blog/blog-4.jpg',
+                link: 'blog-details.html'
+            },
+            {
+                id: 5,
+                title: 'Пляжный кемпинг "9-й километр"',
+                tag: 'Кемпинг',
+                category: 'camping',
+                date: '25 апреля, 2024',
+                image: 'img/blog/blog-5.jpg',
+                link: 'blog-details.html'
+            },
+            {
+                id: 6,
+                title: 'Олимпийский парк',
+                tag: 'Туристическая поездка',
+                category: 'travel',
+                date: '28 апреля, 2024',
+                image: 'img/blog/blog-6.jpg',
+                link: 'blog-details.html'
+            },
+            {
+                id: 7,
+                title: '33 водопада',
+                tag: 'Туристическая поездка',
+                category: 'travel',
+                date: '29 апреля, 2024',
+                image: 'img/blog/blog-7.jpg',
+                link: 'blog-details.html'
+            },
+            {
+                id: 8,
+                title: 'Винный мастер-класс',
+                tag: 'События и путешествия',
+                category: 'wine',
+                date: '30 апреля, 2024',
+                image: 'img/blog/blog-8.jpg',
+                link: 'blog-details.html'
+            },
+            {
+                id: 9,
+                title: 'Эко-Парк Вотчина',
+                tag: 'Кемпинг',
+                category: 'camping',
+                date: '30 апреля, 2024',
+                image: 'img/blog/blog-9.jpg',
+                link: 'blog-details.html'
+            },
+            {
+                id: 10,
+                title: 'Йога на рассвете',
+                tag: 'Йога',
+                category: 'yoga',
+                date: '15 мая, 2024',
+                image: 'img/blog/blog-1.jpg',
+                link: 'blog-details.html'
+            },
+            {
+                id: 11,
+                title: 'Дегустация коллекционных вин',
+                tag: 'Дегустации',
+                category: 'wine',
+                date: '8 мая, 2024',
+                image: 'img/blog/blog-2.jpg',
+                link: 'blog-details.html'
+            },
+            {
+                id: 12,
+                title: 'Ретро-авто тур',
+                tag: 'Событие',
+                category: 'event',
+                date: '21 мая, 2024',
+                image: 'img/blog/blog-3.jpg',
+                link: 'blog-details.html'
+            }
+        ];
+
+        let currentFilter = 'all';
+        let visibleNews = [];
+        let currentLimit = 6;
+        let allNewsData = [...allNews];
+
+        // Инициализация страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            loadNews();
+            setupFilters();
+            setupLoadMore();
+            setupSubscribeForm();
+            setupSearch();
+            updateCounters();
+        });
+
+        // Загрузка новостей
+        function loadNews() {
+            const container = document.getElementById('news-container');
+            if (!container) return;
+            
+            // Фильтруем новости
+            let filteredNews = allNewsData;
+            if (currentFilter !== 'all') {
+                filteredNews = allNewsData.filter(news => news.category === currentFilter);
+            }
+            
+            visibleNews = filteredNews.slice(0, currentLimit);
+            
+            if (visibleNews.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12">
+                        <div class="no-news">
+                            <i class="fa fa-newspaper-o"></i>
+                            <h3>Новостей не найдено</h3>
+                            <p>Попробуйте изменить категорию или зайти позже</p>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = visibleNews.map(news => `
+                <div class="col-lg-4 col-md-6" data-category="${news.category}">
+                    <div class="blog-item set-bg" data-setbg="${news.image}">
+                        <div class="bi-text">
+                            <span class="b-tag">${news.tag}</span>
+                            <h4><a href="${news.link}">${news.title}</a></h4>
+                            <div class="b-time"><i class="icon_clock_alt"></i> ${news.date}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Инициализация фоновых изображений
+            $('.set-bg').each(function() {
+                var bg = $(this).data('setbg');
+                $(this).css('background-image', 'url(' + bg + ')');
+            });
+            
+            updateCounters();
+            
+            // Показываем/скрываем кнопку "Загрузить больше"
+            const loadMoreBtn = document.getElementById('load-more-btn');
+            if (loadMoreBtn) {
+                if (visibleNews.length >= filteredNews.length) {
+                    loadMoreBtn.style.display = 'none';
+                } else {
+                    loadMoreBtn.style.display = 'inline-block';
+                }
+            }
+        }
+        
+        // Настройка фильтров
+        function setupFilters() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.dataset.filter;
+                    currentLimit = 6;
+                    loadNews();
+                    window.scrollTo({ top: document.querySelector('.blog-section').offsetTop - 100, behavior: 'smooth' });
+                });
+            });
+        }
+        
+        // Загрузка ещё новостей
+        function setupLoadMore() {
+            const loadMoreBtn = document.getElementById('load-more-btn');
+            if (loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    currentLimit += 3;
+                    loadNews();
+                });
+            }
+        }
+        
+        // Обновление счётчиков
+        function updateCounters() {
+            let filteredNews = allNewsData;
+            if (currentFilter !== 'all') {
+                filteredNews = allNewsData.filter(news => news.category === currentFilter);
+            }
+            
+            const visibleCount = document.getElementById('visible-count');
+            const totalCount = document.getElementById('total-count');
+            
+            if (visibleCount) visibleCount.textContent = visibleNews.length;
+            if (totalCount) totalCount.textContent = filteredNews.length;
+        }
+        
+        // Поиск по новостям
+        function setupSearch() {
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.addEventListener('keyup', function(e) {
+                    const query = this.value.toLowerCase().trim();
+                    
+                    if (query === '') {
+                        allNewsData = [...allNews];
+                    } else {
+                        allNewsData = allNews.filter(news => 
+                            news.title.toLowerCase().includes(query) || 
+                            news.tag.toLowerCase().includes(query)
+                        );
+                    }
+                    
+                    currentLimit = 6;
+                    loadNews();
+                });
+            }
+        }
+        
+        // Подписка на рассылку
+        function setupSubscribeForm() {
+            const form = document.getElementById('subscribe-form');
+            if (!form) return;
+            
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const email = document.getElementById('subscribe-email')?.value.trim();
+                const messageDiv = document.getElementById('subscribe-message');
+                
+                if (!email) {
+                    if (messageDiv) messageDiv.innerHTML = '<span style="color: red;">Введите email</span>';
+                    return;
+                }
+                
+                try {
+                    const response = await fetch('/api/subscribe', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: email })
+                    });
+                    const result = await response.json();
+                    
+                    if (messageDiv) {
+                        if (result.success) {
+                            messageDiv.innerHTML = '<span style="color: green;">✓ Подписка оформлена!</span>';
+                            document.getElementById('subscribe-email').value = '';
+                            setTimeout(() => messageDiv.innerHTML = '', 3000);
+                        } else {
+                            messageDiv.innerHTML = '<span style="color: red;">' + (result.message || 'Ошибка') + '</span>';
+                        }
+                    }
+                } catch (error) {
+                    if (messageDiv) messageDiv.innerHTML = '<span style="color: red;">Ошибка сервера</span>';
+                }
+            });
+        }
+        
+        // Кнопка "Наверх"
+        function addScrollToTop() {
+            if (document.querySelector('.scroll-top')) return;
+            
+            const scrollBtn = document.createElement('button');
+            scrollBtn.className = 'scroll-top';
+            scrollBtn.innerHTML = '<i class="fa fa-arrow-up"></i>';
+            scrollBtn.style.cssText = `
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                width: 45px;
+                height: 45px;
+                background: #c7a17a;
+                color: white;
+                border: none;
+                border-radius: 50%;
+                cursor: pointer;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s;
+                z-index: 999;
+                font-size: 20px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            `;
+            
+            document.body.appendChild(scrollBtn);
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollBtn.style.opacity = '1';
+                    scrollBtn.style.visibility = 'visible';
+                } else {
+                    scrollBtn.style.opacity = '0';
+                    scrollBtn.style.visibility = 'hidden';
+                }
+            });
+            
+            scrollBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+        
+        addScrollToTop();
+    </script>
+</body>
+</html>

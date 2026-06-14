@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Aman Hotel - роскошный отель в Сочи">
+    <meta name="keywords" content="отель, Сочи, бронирование, люкс">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aman Hotel</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/flaticon.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    
+    <style>
+        /* ===== ОСНОВНЫЕ СТИЛИ ===== */
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+        
+        .section-title span {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            font-size: 14px;
+            letter-spacing: 2px;
+            color: #c7a17a;
+            text-transform: uppercase;
+        }
+        
+        .section-title span:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background: #c7a17a;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            margin-top: 25px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+/* ===== КАРТОЧКИ НОМЕРОВ НА ГЛАВНОЙ (УНИКАЛЬНЫЙ СТИЛЬ) ===== */
+
+.rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.room-card-home {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    cursor: pointer;
+}
+
+.room-card-home:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+/* Верхняя часть с фото */
+.room-card-home .card-image {
+    position: relative;
+    height: 280px;
+    overflow: hidden;
+}
+
+.room-card-home .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.room-card-home:hover .card-image img {
+    transform: scale(1.05);
+}
+
+/* Цена на фото */
+.room-card-home .price-tag {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px);
+    padding: 6px 15px;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    z-index: 2;
+}
+
+.room-card-home .price-tag span {
+    font-size: 12px;
+    font-weight: normal;
+    opacity: 0.8;
+}
+
+/* Бейдж */
+.room-card-home .badge-home {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #c7a17a;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.room-card-home .badge-home.hot {
+    background: #e74c3c;
+}
+
+.room-card-home .badge-home.vip {
+    background: #f39c12;
+}
+
+/* Нижняя часть с информацией */
+.room-card-home .card-content {
+    padding: 20px;
+    background: white;
+}
+
+.room-card-home .room-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.room-card-home .room-desc {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 15px;
+}
+
+/* Характеристики в строку */
+.room-card-home .quick-stats {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+    padding: 10px 0;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.room-card-home .stat {
+    text-align: center;
+    flex: 1;
+}
+
+.room-card-home .stat i {
+    font-size: 16px;
+    color: #c7a17a;
+    margin-right: 5px;
+}
+
+.room-card-home .stat span {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Кнопка */
+.room-card-home .book-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: #c7a17a;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.room-card-home .book-link i {
+    margin-left: 5px;
+    transition: transform 0.3s;
+}
+
+.room-card-home .book-link:hover {
+    color: #a8865f;
+}
+
+.room-card-home .book-link:hover i {
+    transform: translateX(5px);
+}
+
+/* Анимация появления */
+.room-card-home {
+    animation: fadeInHome 0.5s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+@keyframes fadeInHome {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.room-card-home:nth-child(1) { animation-delay: 0.05s; }
+.room-card-home:nth-child(2) { animation-delay: 0.1s; }
+.room-card-home:nth-child(3) { animation-delay: 0.15s; }
+.room-card-home:nth-child(4) { animation-delay: 0.2s; }
+.room-card-home:nth-child(5) { animation-delay: 0.25s; }
+.room-card-home:nth-child(6) { animation-delay: 0.3s; }
+.room-card-home:nth-child(7) { animation-delay: 0.35s; }
+.room-card-home:nth-child(8) { animation-delay: 0.4s; }
+.room-card-home:nth-child(9) { animation-delay: 0.45s; }
+
+@media (max-width: 768px) {
+    .rooms-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .room-card-home .card-image {
+        height: 220px;
+    }
+    .room-card-home .room-name {
+        font-size: 18px;
+    }
+}
+        
+
+        
+        /* ===== КАРТОЧКИ УСЛУГ ===== */
+        
+        .service-item {
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            height: 100%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .service-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            background: #c7a17a;
+        }
+        
+        .service-item i {
+            font-size: 50px;
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+            color: #c7a17a;
+        }
+        
+        .service-item:hover i {
+            transform: scale(1.1);
+            color: white;
+        }
+        
+        .service-item h4 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+            color: #333;
+        }
+        
+        .service-item:hover h4 {
+            color: white;
+        }
+        
+        .service-item p {
+            color: #777;
+            line-height: 1.6;
+            transition: color 0.3s ease;
+        }
+        
+        .service-item:hover p {
+            color: rgba(255,255,255,0.9);
+        }
+        
+        /* ===== БЛОК "О НАС" ===== */
+        
+        .aboutus-section {
+            padding: 80px 0;
+            background: #fff;
+        }
+        
+        .about-text {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .about-text::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: #c7a17a;
+        }
+        
+        .about-text .section-title {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        
+        .about-text .section-title h2 {
+            font-size: 38px;
+            font-weight: 500;
+            margin-top: 0;
+        }
+        
+        .about-btn {
+            background: transparent;
+            color: #c7a17a;
+            border: 2px solid #c7a17a;
+            padding: 10px 25px;
+            border-radius: 0;
+            transition: all 0.3s;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .about-btn:hover {
+            background: #c7a17a;
+            color: white;
+        }
+        
+        .about-pic img {
+            transition: all 0.4s;
+            width: 100%;
+        }
+        
+        /* ===== ОТЗЫВЫ ===== */
+        
+        .testimonial-section .ts-item {
+            text-align: center;
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-section .rating i {
+            color: #f1c40f;
+            font-size: 14px;
+            margin: 0 2px;
+        }
+        
+        .testimonial-section .ti-author h5 {
+            color: #c7a17a;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        /* ===== МОДАЛЬНОЕ ОКНО ЧЕКА ===== */
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 90%;
+            padding: 25px;
+            animation: fadeInUp 0.3s ease;
+        }
+        
+        .receipt {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+        }
+        
+        .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .receipt-total {
+            font-size: 18px;
+            font-weight: bold;
+            color: #c7a17a;
+            border-top: 2px solid #c7a17a;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* ===== МОБИЛЬНАЯ ВЕРСИЯ ===== */
+        
+        @media (max-width: 768px) {
+            .section-title h2 { font-size: 28px; }
+            .hp-room-item .hr-text { padding: 12px; }
+            .hp-room-item .hr-text h3 { font-size: 18px; }
+            .about-text { padding-left: 15px; margin-bottom: 30px; }
+            .about-text .section-title h2 { font-size: 28px; }
+        }
+        
+        /* Анимация появления */
+        @keyframes fadeInUpAnim {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .blog-item {
+            animation: fadeInUpAnim 0.6s ease forwards;
+            opacity: 0;
+        }
+        
+        .blog-item:nth-child(1) { animation-delay: 0.1s; }
+        .blog-item:nth-child(2) { animation-delay: 0.2s; }
+        .blog-item:nth-child(3) { animation-delay: 0.3s; }
+
+        /* ===== НОВЫЕ КАРТОЧКИ НОМЕРОВ ===== */
+
+.rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.room-card-modern {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.room-card-modern:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.room-card-modern .room-image {
+    position: relative;
+    height: 260px;
+    overflow: hidden;
+}
+
+.room-card-modern .room-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.room-card-modern:hover .room-image img {
+    transform: scale(1.08);
+}
+
+.room-card-modern .room-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #c7a17a;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 25px;
+    font-size: 11px;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.room-card-modern .room-badge.hot {
+    background: #e74c3c;
+}
+
+.room-card-modern .room-badge.vip {
+    background: #f39c12;
+}
+
+.room-card-modern .room-info {
+    padding: 20px;
+}
+
+.room-card-modern .room-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.room-card-modern .room-subtitle {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 15px;
+}
+
+.room-card-modern .room-price {
+    font-size: 28px;
+    font-weight: 700;
+    color: #c7a17a;
+    margin-bottom: 15px;
+}
+
+.room-card-modern .room-price span {
+    font-size: 13px;
+    color: #999;
+    font-weight: normal;
+}
+
+.room-card-modern .room-features {
+    display: flex;
+    gap: 15px;
+    margin: 15px 0;
+    padding: 12px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.room-card-modern .feature {
+    text-align: center;
+    flex: 1;
+}
+
+.room-card-modern .feature i {
+    font-size: 18px;
+    color: #c7a17a;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.room-card-modern .feature span {
+    display: block;
+    font-size: 11px;
+    color: #666;
+}
+
+.room-card-modern .room-amenities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.room-card-modern .amenity {
+    background: #f5f5f5;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    color: #555;
+    transition: all 0.3s;
+}
+
+.room-card-modern:hover .amenity {
+    background: #c7a17a;
+    color: white;
+}
+
+.room-card-modern .room-btn {
+    display: block;
+    text-align: center;
+    background: #c7a17a;
+    color: white;
+    padding: 12px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.room-card-modern .room-btn:hover {
+    background: #a8865f;
+    transform: translateY(-2px);
+}
+
+/* Анимация появления карточек */
+.room-card-modern {
+    animation: fadeInScale 0.5s ease forwards;
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+@keyframes fadeInScale {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.room-card-modern:nth-child(1) { animation-delay: 0.05s; }
+.room-card-modern:nth-child(2) { animation-delay: 0.1s; }
+.room-card-modern:nth-child(3) { animation-delay: 0.15s; }
+.room-card-modern:nth-child(4) { animation-delay: 0.2s; }
+.room-card-modern:nth-child(5) { animation-delay: 0.25s; }
+.room-card-modern:nth-child(6) { animation-delay: 0.3s; }
+.room-card-modern:nth-child(7) { animation-delay: 0.35s; }
+.room-card-modern:nth-child(8) { animation-delay: 0.4s; }
+.room-card-modern:nth-child(9) { animation-delay: 0.45s; }
+
+@media (max-width: 768px) {
+    .rooms-grid {
+        grid-template-columns: 1fr;
+    }
+    .room-card-modern .room-title {
+        font-size: 18px;
+    }
+    .room-card-modern .room-price {
+        font-size: 22px;
+    }
+}
+    </style>
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Section Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="canvas-open">
+        <i class="icon_menu"></i>
+    </div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="canvas-close">
+            <i class="icon_close"></i>
+        </div>
+        <div class="search-icon search-switch">
+            <i class="icon_search"></i>
+        </div>
+        <div class="header-configure-area">
+            <a href="room-details.html" class="bk-btn">Бронировать</a>
+        </div>
+        <nav class="mainmenu mobile-menu">
+            <ul>
+                <li class="active"><a href="./index.html">Главная</a></li>
+                <li><a href="./rooms.html">Номера</a></li>
+                <li><a href="./about-us.html">О нас</a></li>
+                <li><a href="./blog-details.html">Подробности</a></li>
+                <li><a href="./blog.html">Новости</a></li>
+                <li><a href="./contact.html">Контакты</a></li>
+            </ul>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+        <div class="top-social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-tripadvisor"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
+        <ul class="top-widget">
+            <li><i class="fa fa-phone"></i> (12) 345 67890</li>
+            <li><i class="fa fa-envelope"></i> aman@gmail.com</li>
+        </ul>
+    </div>
+    <!-- Offcanvas Menu Section End -->
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <div class="top-nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="tn-left">
+                            <li><i class="fa fa-phone"></i> (12) 345 67890</li>
+                            <li><i class="fa fa-envelope"></i> aman@gmail.com</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="tn-right">
+                            <div class="top-social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-tripadvisor"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </div>
+                            <a href="room-details.html" class="bk-btn">Бронировать</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <div class="logo">
+                            <a href="./index.html">
+                                <img src="img/logo.svg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-10">
+                        <div class="nav-menu">
+                            <nav class="mainmenu">
+                                <ul>
+                                    <li class="active"><a href="./index.html">Главная</a></li>
+                                    <li><a href="./rooms.html">Номера</a></li>
+                                    <li><a href="./about-us.html">О нас</a></li>
+                                    <li><a href="./blog-details.html">Подробности</a></li>
+                                    <li><a href="./blog.html">Новости</a></li>
+                                    <li><a href="./contact.html">Контакты</a></li>
+                                </ul>
+                            </nav>
+                            <div class="nav-right search-switch">
+                                <i class="icon_search"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Hero Section Begin -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="hero-text">
+                        <h1>AMAN</h1>
+                        <p>Наш отель сочетает элегантность, премиальный комфорт и персональный сервис, создавая уникальную атмосферу для гостей. Просторные номера, изысканная кухня и продуманные удобства позволяют наслаждаться отдыхом без компромиссов.</p>
+                        <p>Добро пожаловать в пространство, где ваш отдых становится особенным!</p>
+                        <a href="#" class="primary-btn">Откройте для себя сейчас!</a>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
+                    <div class="booking-form" style="padding: 15px;">
+                        <h3 style="margin-bottom: 12px; text-align: center; font-size: 18px;">Бронируйте сейчас</h3>
+                        <form id="bookingForm" novalidate>
+                            <div class="check-date" style="margin-bottom: 8px;">
+                                <input type="text" id="full_name" placeholder="ФИО" style="width: 100%; padding: 8px; box-sizing: border-box;" required>
+                            </div>
+                            <div class="check-date" style="margin-bottom: 8px;">
+                                <input type="email" id="email" placeholder="Email" style="width: 100%; padding: 8px; box-sizing: border-box;" required>
+                            </div>
+                            <div class="check-date" style="margin-bottom: 8px;">
+                                <input type="tel" id="phone" placeholder="Телефон" style="width: 100%; padding: 8px; box-sizing: border-box;" required>
+                            </div>
+                            <div class="select-option" style="margin-bottom: 8px;">
+                              <select id="room_type" style="width: 100%; padding: 8px; box-sizing: border-box;">
+    <option value="">Выберите номер</option>
+    <option value="Гранд Супериор">Гранд Супериор - 15 900₽</option>
+    <option value="Авторский Делюкс">Авторский Делюкс - 20 800₽</option>
+    <option value="Исторический Люкс">Исторический Люкс - 26 700₽</option>
+    <option value="Люкс Метрополь">Люкс Метрополь - 30 000₽</option>
+    <option value="Премьер Люкс">Премьер Люкс - 33 000₽</option>
+    <option value="Представительский">Представительский - 38 000₽</option>
+    <option value="Авторский Представительский">Авторский Представительский - 42 000₽</option>
+    <option value="Посольский Люкс">Посольский Люкс - 60 000₽</option>
+    <option value="Люкс Большой">Люкс Большой - 64 000₽</option>
+</select>  
+                            </div>
+                            <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                                <div class="check-date" style="flex: 1;">
+                                    <input type="date" id="date-in" style="width: 100%; padding: 8px; box-sizing: border-box;" required>
+                                </div>
+                                <div class="check-date" style="flex: 1;">
+                                    <input type="date" id="date-out" style="width: 100%; padding: 8px; box-sizing: border-box;" required>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                                <div class="select-option" style="flex: 1;">
+                                    <select id="guest" style="width: 100%; padding: 8px; box-sizing: border-box;">
+                                        <option value="1">1 взрослый</option>
+                                        <option value="2" selected>2 взрослых</option>
+                                        <option value="3">3 взрослых</option>
+                                        <option value="4">4 взрослых</option>
+                                    </select>
+                                </div>
+                                <div class="select-option" style="flex: 1;">
+                                    <select id="children" style="width: 100%; padding: 8px; box-sizing: border-box;">
+                                        <option value="0">0 детей</option>
+                                        <option value="1">1 ребенок</option>
+                                        <option value="2">2 ребенка</option>
+                                        <option value="3">3 ребенка</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="check-date" style="margin-bottom: 8px;">
+                                <input type="text" id="card_number" placeholder="Номер карты" maxlength="19" style="width: 100%; padding: 8px; box-sizing: border-box;">
+                            </div>
+                            <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+                                <div class="check-date" style="flex: 2;">
+                                    <input type="text" id="card_expiry" placeholder="ММ/ГГ" maxlength="5" style="width: 100%; padding: 8px; box-sizing: border-box;">
+                                </div>
+                                <div class="check-date" style="flex: 1;">
+                                    <input type="password" id="card_cvv" placeholder="CVV" maxlength="4" style="width: 100%; padding: 8px; box-sizing: border-box;">
+                                </div>
+                            </div>
+                            <div id="pricePreview" style="background: #f8f9fa; padding: 8px; border-radius: 6px; margin: 8px 0; text-align: center; font-size: 13px; color: #c7a17a;">
+                                Выберите даты и номер
+                            </div>
+                            <div id="totalPriceDisplay" style="background: #c7a17a; color: white; padding: 10px; border-radius: 6px; margin: 8px 0; text-align: center; font-size: 16px; font-weight: bold;">
+                                К оплате: 0 ₽
+                            </div>
+                            <button type="submit" id="submitBtn" style="width: 100%; background: #c7a17a; color: white; border: none; padding: 10px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer;">
+                                Оплатить
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-slider owl-carousel">
+            <div class="hs-item set-bg" data-setbg="img/hero/hero-1.jpg"></div>
+            <div class="hs-item set-bg" data-setbg="img/hero/hero-2.jpg"></div>
+            <div class="hs-item set-bg" data-setbg="img/hero/hero-3.jpg"></div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- About Us Section Begin -->
+    <section class="aboutus-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="about-text">
+                        <div class="section-title">
+                            <span>О нас</span>
+                            <h2>Роскошь и комфорт в сердце Сочи<br>AMAN</h2>
+                        </div>
+                        <p class="f-para">Здесь каждый гость наслаждается премиальным отдыхом, окружённым стильными интерьерами, великолепными видами и вниманием к деталям.</p>
+                        <p class="s-para">Для тех, кто ищет приключения, мы организуем индивидуальные экскурсии в живописные уголки региона.</p>
+                        <a href="#" class="primary-btn about-btn">Читать далее</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-pic">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <img src="img/about/about-1.jpg" alt="">
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="img/about/about-2.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Us Section End -->
+
+    <!-- Services Section -->
+    <section class="services-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Что мы делаем</span>
+                        <h2>Откройте для себя наши услуги</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-item">
+                        <i class="flaticon-036-parking"></i>
+                        <h4>Парковка</h4>
+                        <p>Охраняемая зона с видеонаблюдением</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-item">
+                        <i class="flaticon-033-dinner"></i>
+                        <h4>Ресторан</h4>
+                        <p>Изысканная кухня от шеф-повара</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-item">
+                        <i class="flaticon-026-bed"></i>
+                        <h4>Номера</h4>
+                        <p>9 категорий премиальных номеров</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-item">
+                        <i class="flaticon-024-towel"></i>
+                        <h4>Прачечная</h4>
+                        <p>Профессиональная химчистка</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-item">
+                        <i class="flaticon-044-clock-1"></i>
+                        <h4>Трансфер</h4>
+                        <p>Встреча в аэропорту</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="service-item">
+                        <i class="flaticon-012-cocktail"></i>
+                        <h4>Бар</h4>
+                        <p>Авторские коктейли</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section End -->
+
+<!-- Home Room Section Begin -->
+<section class="hp-room-section">
+    <div class="container">
+        <div class="section-title">
+            <span>Наши номера</span>
+            <h2>Выберите идеальный вариант</h2>
+        </div>
+        <div class="row" id="roomsContainer">
+            <!-- Карточки будут загружены через JS -->
+        </div>
+    </div>
+</section>
+<!-- Home Room Section End -->
+
+    <!-- Testimonial Section Begin -->
+    <section class="testimonial-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Рекомендации</span>
+                        <h2>Что говорят клиенты?</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="testimonial-slider owl-carousel">
+                        <div class="ts-item">
+                            <p>Потрясающий отель! Всё на высшем уровне. Обязательно приедем ещё!</p>
+                            <div class="ti-author">
+                                <div class="rating"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i></div>
+                                <h5>— Мария и Дмитрий Ковалёвы</h5>
+                            </div>
+                            <img src="img/testimonial-logo.png" alt="">
+                        </div>
+                        <div class="ts-item">
+                            <p>Отличное соотношение цены и качества. Рекомендую!</p>
+                            <div class="ti-author">
+                                <div class="rating"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i></div>
+                                <h5>— Татьяна Морозова</h5>
+                            </div>
+                            <img src="img/testimonial-logo.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Testimonial Section End -->
+
+    <!-- Blog Section Begin -->
+    <section class="blog-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Новости отеля</span>
+                        <h2>Наш блог и события!</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="blog-item set-bg" data-setbg="img/blog/blog-1.jpg">
+                        <div class="bi-text">
+                            <span class="b-tag">Йога на рассвете</span>
+                            <h4><a href="#">Занятия на свежем воздухе</a></h4>
+                            <div class="b-time"><i class="icon_clock_alt"></i> 15 июня, 2025</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="blog-item set-bg" data-setbg="img/blog/blog-2.jpg">
+                        <div class="bi-text">
+                            <span class="b-tag">Дегустация вин</span>
+                            <h4><a href="#">Подбор редких вин</a></h4>
+                            <div class="b-time"><i class="icon_clock_alt"></i> 8 июня, 2025</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="blog-item set-bg" data-setbg="img/blog/blog-3.jpg">
+                        <div class="bi-text">
+                            <span class="b-tag">Ретро-авто тур</span>
+                            <h4><a href="#">Поездка на классических авто</a></h4>
+                            <div class="b-time"><i class="icon_clock_alt"></i> 21 мая, 2025</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Blog Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-text">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="ft-about">
+                            <div class="logo"><a href="#"><img src="img/footer-logo.svg" alt=""></a></div>
+                            <p>Мы вдохновляем миллионы путешественников</p>
+                            <div class="fa-social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 offset-lg-1">
+                        <div class="ft-contact">
+                            <h6>Контакты</h6>
+                            <ul>
+                                <li>+7 (862) 345-67-89</li>
+                                <li>info@amanhotel.ru</li>
+                                <li>г. Сочи, ул. Курортная, 15</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 offset-lg-1">
+                        <div class="ft-newslatter">
+                            <h6>Подписка</h6>
+                            <p>Получайте последние обновления</p>
+                            <form action="#" class="fn-form">
+                                <input type="email" placeholder="Email">
+                                <button type="submit"><i class="fa fa-send"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-option">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="co-text">
+                            <p>© 2025 Aman Hotel. Все права защищены.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search model Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch"><i class="icon_close"></i></div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search...">
+            </form>
+        </div>
+    </div>
+    <!-- Search model end -->
+
+    <!-- Модальное окно чека -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div style="text-align: center;">
+                <div style="width: 60px; height: 60px; background: #2ecc71; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+                    <i class="fa fa-check" style="font-size: 30px; color: white;"></i>
+                </div>
+                <h2 style="color: #2ecc71;">Оплата прошла успешно!</h2>
+                <p>Ваше бронирование подтверждено</p>
+            </div>
+            <div class="receipt">
+                <div class="receipt-row"><strong>Номер бронирования:</strong> <span id="receipt_booking_number">-</span></div>
+                <div class="receipt-row"><strong>Гость:</strong> <span id="receipt_name">-</span></div>
+                <div class="receipt-row"><strong>Номер:</strong> <span id="receipt_room">-</span></div>
+                <div class="receipt-row"><strong>Даты:</strong> <span id="receipt_dates">-</span></div>
+                <div class="receipt-row"><strong>Ночей:</strong> <span id="receipt_nights">-</span></div>
+                <div class="receipt-row"><strong>Гости:</strong> <span id="receipt_guests">-</span></div>
+                <div class="receipt-row receipt-total"><strong>Итого:</strong> <span id="receipt_total">-</span></div>
+                <div class="receipt-row"><strong>Дата оплаты:</strong> <span id="receipt_date">-</span></div>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button onclick="printReceipt()" class="primary-btn" style="background: #3498db; flex: 1;">🖨️ Печать</button>
+                <button onclick="closeModal()" class="primary-btn" style="background: #c7a17a; flex: 1;">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        // Цены на номера (9 категорий)
+const roomPrices = {
+    'Гранд Супериор': 15900,
+    'Авторский Делюкс': 20800,
+    'Исторический Люкс': 26700,
+    'Люкс Метрополь': 30000,
+    'Премьер Люкс': 33000,
+    'Представительский': 38000,
+    'Авторский Представительский': 42000,
+    'Посольский Люкс': 60000,
+    'Люкс Большой': 64000
+};
+
+        // Форматирование карты
+        const cardInput = document.getElementById('card_number');
+        if (cardInput) {
+            cardInput.addEventListener('input', function(e) {
+                let value = this.value.replace(/\D/g, '');
+                if (value.length > 16) value = value.slice(0, 16);
+                let formatted = '';
+                for (let i = 0; i < value.length; i++) {
+                    if (i > 0 && i % 4 === 0) formatted += ' ';
+                    formatted += value[i];
+                }
+                this.value = formatted;
+            });
+        }
+
+        // Форматирование срока
+        const expiryInput = document.getElementById('card_expiry');
+        if (expiryInput) {
+            expiryInput.addEventListener('input', function(e) {
+                let value = this.value.replace(/\D/g, '');
+                if (value.length > 4) value = value.slice(0, 4);
+                if (value.length >= 3) {
+                    this.value = value.slice(0, 2) + '/' + value.slice(2);
+                } else {
+                    this.value = value;
+                }
+            });
+        }
+
+        // Расчет стоимости
+        function calculateTotal() {
+            const roomType = document.getElementById('room_type').value;
+            const dateIn = document.getElementById('date-in').value;
+            const dateOut = document.getElementById('date-out').value;
+            
+            if (roomType && dateIn && dateOut) {
+                const price = roomPrices[roomType];
+                const nights = Math.ceil((new Date(dateOut) - new Date(dateIn)) / (1000*60*60*24));
+                if (nights > 0 && price) {
+                    const total = price * nights;
+                    document.getElementById('totalPriceDisplay').innerHTML = `К оплате: ${total.toLocaleString()} ₽`;
+                    document.getElementById('pricePreview').innerHTML = `${price.toLocaleString()}₽ × ${nights} ночь = ${total.toLocaleString()}₽`;
+                    return { total, nights };
+                }
+            }
+            document.getElementById('totalPriceDisplay').innerHTML = 'К оплате: 0 ₽';
+            document.getElementById('pricePreview').innerHTML = 'Выберите даты и номер';
+            return null;
+        }
+
+        document.getElementById('room_type')?.addEventListener('change', calculateTotal);
+        document.getElementById('date-in')?.addEventListener('change', calculateTotal);
+        document.getElementById('date-out')?.addEventListener('change', calculateTotal);
+
+        // Отправка формы
+        document.getElementById('bookingForm')?.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const roomType = document.getElementById('room_type').value;
+            const dateIn = document.getElementById('date-in').value;
+            const dateOut = document.getElementById('date-out').value;
+            const fullName = document.getElementById('full_name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const adults = parseInt(document.getElementById('guest').value) || 2;
+            const children = parseInt(document.getElementById('children').value) || 0;
+            const priceData = calculateTotal();
+            
+            if (!roomType) { alert('Выберите тип номера'); return; }
+            if (!dateIn || !dateOut) { alert('Выберите даты'); return; }
+            if (!fullName) { alert('Введите ФИО'); return; }
+            if (!email) { alert('Введите email'); return; }
+            if (!phone) { alert('Введите телефон'); return; }
+            if (!priceData) { alert('Укажите корректные даты'); return; }
+            
+            const formData = {
+                full_name: fullName,
+                email: email,
+                phone: phone,
+                room_type: roomType,
+                check_in: dateIn,
+                check_out: dateOut,
+                adults: adults,
+                children: children,
+                total_price: priceData.total,
+                card_number: document.getElementById('card_number')?.value.replace(/\s/g, '') || '',
+                card_expiry: document.getElementById('card_expiry')?.value || '',
+                card_cvv: document.getElementById('card_cvv')?.value || ''
+            };
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ ОБРАБОТКА...';
+            
+            try {
+                const response = await fetch('/api/bookings', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+                const result = await response.json();
+                
+                if (result.success) {
+                    document.getElementById('receipt_booking_number').textContent = result.booking_number;
+                    document.getElementById('receipt_name').textContent = fullName;
+                    document.getElementById('receipt_room').textContent = roomType;
+                    document.getElementById('receipt_dates').textContent = `${dateIn} — ${dateOut}`;
+                    document.getElementById('receipt_nights').textContent = priceData.nights;
+                    document.getElementById('receipt_guests').textContent = `${adults} взрослых, ${children} детей`;
+                    document.getElementById('receipt_total').textContent = `${priceData.total.toLocaleString()} ₽`;
+                    document.getElementById('receipt_date').textContent = new Date().toLocaleString('ru-RU');
+                    document.getElementById('successModal').style.display = 'flex';
+                    document.getElementById('bookingForm').reset();
+                    document.getElementById('totalPriceDisplay').innerHTML = 'К оплате: 0 ₽';
+                } else {
+                    alert('❌ ' + result.message);
+                }
+            } catch (error) {
+                alert('⚠️ Ошибка подключения к серверу');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Оплатить';
+            }
+        });
+
+        // Подписка
+        document.querySelector('.fn-form')?.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input')?.value;
+            if (!email) return;
+            try {
+                await fetch('/api/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                alert('Подписка оформлена!');
+                this.reset();
+            } catch (error) {
+                alert('Ошибка');
+            }
+        });
+
+        // Минимальные даты
+        const today = new Date().toISOString().split('T')[0];
+        const dateIn = document.getElementById('date-in');
+        const dateOut = document.getElementById('date-out');
+        if (dateIn) dateIn.min = today;
+        if (dateOut) dateOut.min = today;
+
+        // Функции модального окна
+        function closeModal() {
+            document.getElementById('successModal').style.display = 'none';
+        }
+        
+        function printReceipt() {
+            window.print();
+        }
+        
+        console.log('✅ Страница загружена');
+
+        // Данные номеров для главной страницы
+const homeRooms = [
+    { name: 'Гранд Супериор', price: 15900, area: '40 м²', capacity: 2, bed: 'King', image: 'img/room/1_1.png', desc: 'Просторный номер с панорамным видом', badge: null },
+    { name: 'Авторский Делюкс', price: 20800, area: '55 м²', capacity: 3, bed: 'King', image: 'img/room/2_1.png', desc: 'Элегантный дизайн и джакузи', badge: null },
+    { name: 'Исторический Люкс', price: 26700, area: '60 м²', capacity: 4, bed: 'King', image: 'img/room/3_1.png', desc: 'Антикварная мебель', badge: null },
+    { name: 'Люкс Метрополь', price: 30000, area: '80 м²', capacity: 4, bed: 'King', image: 'img/room/4_1.png', desc: 'Отдельная гостиная', badge: null },
+    { name: 'Премьер Люкс', price: 33000, area: '95 м²', capacity: 4, bed: 'King', image: 'img/room/5_1.png', desc: 'Панорамные окна', badge: null },
+    { name: 'Представительский', price: 38000, area: '35 м²', capacity: 3, bed: 'King', image: 'img/room/1_2.png', desc: 'Сейф, USB-порты', badge: 'hot' },
+    { name: 'Авторский Представительский', price: 42000, area: '35 м²', capacity: 2, bed: 'King', image: 'img/room/2_2.png', desc: 'Косметика Lalique', badge: 'vip' },
+    { name: 'Посольский Люкс', price: 60000, area: '130 м²', capacity: 4, bed: 'King', image: 'img/room/6_5.png', desc: 'Сауна, терраса', badge: 'vip' },
+    { name: 'Люкс Большой', price: 64000, area: '60 м²', capacity: 4, bed: 'King', image: 'img/room/3_2.png', desc: 'Премиум-класс', badge: 'vip' }
+];
+
+function loadHomeRooms() {
+    const container = document.getElementById('roomsContainer');
+    if (!container) return;
+    
+    container.className = 'rooms-grid';
+    container.innerHTML = homeRooms.map(room => `
+        <div class="room-card-home">
+            <div class="card-image">
+                <img src="${room.image}" alt="${room.name}">
+                <div class="price-tag">${room.price.toLocaleString()}₽ <span>/ночь</span></div>
+                ${room.badge ? `<div class="badge-home ${room.badge}">${room.badge === 'hot' ? '🔥 HOT' : '⭐ VIP'}</div>` : ''}
+            </div>
+            <div class="card-content">
+                <h3 class="room-name">${room.name}</h3>
+                <p class="room-desc">${room.desc}</p>
+                <div class="quick-stats">
+                    <div class="stat"><i class="fa fa-arrows-alt"></i> <span>${room.area}</span></div>
+                    <div class="stat"><i class="fa fa-users"></i> <span>до ${room.capacity} чел</span></div>
+                    <div class="stat"><i class="fa fa-bed"></i> <span>${room.bed}</span></div>
+                </div>
+                <a href="room-details.html?room=${room.name.toLowerCase().replace(/ /g, '-')}" class="book-link">Подробнее <i class="fa fa-arrow-right"></i></a>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Запуск
+document.addEventListener('DOMContentLoaded', loadHomeRooms);
+    </script>
+</body>
+</html>

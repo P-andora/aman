@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Детали номера | Aman Hotel">
+    <meta name="keywords" content="номер, люкс, бронирование, отель">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детали номера | Aman Hotel</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/flaticon.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    
+    <style>
+        /* Стили для страницы деталей номера */
+        .breadcrumb-section {
+            padding: 40px 0;
+            background: #f8f9fa;
+        }
+        
+        .room-slider {
+            margin-bottom: 30px;
+        }
+        
+        .slider-container {
+            position: relative;
+            background: #f0f0f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-slide {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+        }
+        
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .slider-btn:hover { background: #c7a17a; }
+        .prev-btn { left: 15px; }
+        .next-btn { right: 15px; }
+        
+        .slide-counter {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+        
+        .thumbnails {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            overflow-x: auto;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.3s;
+        }
+        
+        .thumbnail:hover, .thumbnail.active {
+            opacity: 1;
+            border: 2px solid #c7a17a;
+        }
+        
+        .room-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .room-price {
+            font-size: 28px;
+            font-weight: 700;
+            color: #c7a17a;
+            margin-bottom: 20px;
+        }
+        
+        .room-price span {
+            font-size: 14px;
+            color: #999;
+            font-weight: normal;
+        }
+        
+        .rating {
+            margin-bottom: 15px;
+        }
+        
+        .rating i {
+            color: #f1c40f;
+            font-size: 14px;
+        }
+        
+        .room-description {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+        
+        .specs {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+            padding: 20px 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .spec {
+            text-align: center;
+            flex: 1;
+            min-width: 80px;
+        }
+        
+        .spec i {
+            font-size: 24px;
+            color: #c7a17a;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+        
+        .spec span {
+            display: block;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .spec strong {
+            display: block;
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .amenities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .amenity {
+            background: #f5f5f5;
+            padding: 6px 14px;
+            border-radius: 25px;
+            font-size: 13px;
+            color: #555;
+            transition: all 0.3s;
+        }
+        
+        .amenity:hover {
+            background: #c7a17a;
+            color: white;
+        }
+        
+        /* Форма бронирования */
+        .booking-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 20px;
+        }
+        
+        .booking-card h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 5px;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+        
+        .guest-counter {
+            display: flex;
+            align-items: center;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+        }
+        
+        .guest-counter button {
+            width: 32px;
+            height: 38px;
+            background: #f8f9fa;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .guest-counter button:hover {
+            background: #c7a17a;
+            color: white;
+        }
+        
+        .guest-counter input {
+            width: 45px;
+            text-align: center;
+            border: none;
+            padding: 8px 0;
+        }
+        
+        .price-summary {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+        
+        .total-row {
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+            margin-top: 8px;
+            font-weight: 700;
+            color: #c7a17a;
+            font-size: 16px;
+        }
+        
+        .book-btn {
+            width: 100%;
+            background: #c7a17a;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .book-btn:hover {
+            background: #a8865f;
+            transform: translateY(-2px);
+        }
+        
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 450px;
+            width: 90%;
+            padding: 25px;
+        }
+        
+        .receipt {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 15px 0;
+        }
+        
+        .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+        
+        .receipt-total {
+            font-size: 16px;
+            font-weight: bold;
+            color: #c7a17a;
+            border-top: 1px solid #ddd;
+            padding-top: 8px;
+            margin-top: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .main-slide { height: 250px; }
+            .room-title { font-size: 24px; }
+            .room-price { font-size: 22px; }
+            .specs { gap: 10px; }
+            .booking-card { position: relative; top: 0; margin-top: 20px; }
+            .form-row { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder"><div class="loader"></div></div>
+
+    <!-- Offcanvas Menu -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="canvas-open"><i class="icon_menu"></i></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="canvas-close"><i class="icon_close"></i></div>
+        <div class="header-configure-area"><a href="#" class="bk-btn">Бронировать</a></div>
+        <nav class="mainmenu mobile-menu">
+            <ul>
+                <li><a href="./index.html">Главная</a></li>
+                <li class="active"><a href="./rooms.html">Номера</a></li>
+                <li><a href="./about-us.html">О нас</a></li>
+                <li><a href="./blog-details.html">Подробности</a></li>
+                <li><a href="./blog.html">Новости</a></li>
+                <li><a href="./contact.html">Контакты</a></li>
+            </ul>
+        </nav>
+        <div class="top-social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header-section header-normal">
+        <div class="top-nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="tn-left">
+                            <li><i class="fa fa-phone"></i> +7 (862) 345-67-89</li>
+                            <li><i class="fa fa-envelope"></i> info@amanhotel.ru</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="tn-right">
+                            <div class="top-social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </div>
+                            <a href="#" class="bk-btn">Бронировать</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <div class="logo"><a href="./index.html"><img src="img/logo.png" alt=""></a></div>
+                    </div>
+                    <div class="col-lg-10">
+                        <div class="nav-menu">
+                            <nav class="mainmenu">
+                                <ul>
+                                    <li><a href="./index.html">Главная</a></li>
+                                    <li class="active"><a href="./rooms.html">Номера</a></li>
+                                    <li><a href="./about-us.html">О нас</a></li>
+                                    <li><a href="./blog-details.html">Подробности</a></li>
+                                    <li><a href="./blog.html">Новости</a></li>
+                                    <li><a href="./contact.html">Контакты</a></li>
+                                </ul>
+                            </nav>
+                            <div class="nav-right search-switch"><i class="icon_search"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <h2 id="room-name">Загрузка...</h2>
+                        <div class="bt-option">
+                            <a href="./index.html">Главная</a>
+                            <a href="./rooms.html">Номера</a>
+                            <span id="room-name-span">Номер</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Room Details -->
+    <section class="room-details-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <!-- Слайдер -->
+                    <div class="room-slider">
+                        <div class="slider-container">
+                            <img id="main-slide" class="main-slide" src="" alt="">
+                            <button class="slider-btn prev-btn" id="prev-slide">‹</button>
+                            <button class="slider-btn next-btn" id="next-slide">›</button>
+                            <div class="slide-counter" id="slide-counter">1 / 1</div>
+                        </div>
+                        <div class="thumbnails" id="thumbnails"></div>
+                    </div>
+                    
+                    <!-- Информация -->
+                    <h1 class="room-title" id="room-title">Загрузка...</h1>
+                    <div class="rating">
+                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-alt"></i>
+                        <span style="margin-left: 10px; color: #999;">128 отзывов</span>
+                    </div>
+                    <div class="room-price" id="room-price">0 ₽<span>/ночь</span></div>
+                    <p class="room-description" id="room-description">Загрузка...</p>
+                    
+                    <div class="specs" id="specs"></div>
+                    
+                    <h4>Удобства в номере</h4>
+                    <div class="amenities" id="amenities"></div>
+                </div>
+                
+                <div class="col-lg-5">
+                    <div class="booking-card">
+                        <h3>📅 Забронировать номер</h3>
+                        <form id="booking-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Заезд</label>
+                                    <input type="date" id="check-in" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Выезд</label>
+                                    <input type="date" id="check-out" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Взрослые</label>
+                                    <div class="guest-counter">
+                                        <button type="button" id="adults-minus">-</button>
+                                        <input type="text" id="adults" value="2" readonly>
+                                        <button type="button" id="adults-plus">+</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Дети</label>
+                                    <div class="guest-counter">
+                                        <button type="button" id="children-minus">-</button>
+                                        <input type="text" id="children" value="0" readonly>
+                                        <button type="button" id="children-plus">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Имя</label>
+                                    <input type="text" id="guest-name" placeholder="Иван" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Телефон</label>
+                                    <input type="tel" id="guest-phone" placeholder="+7..." required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" id="guest-email" placeholder="ivan@example.com" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Номер карты</label>
+                                <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>ММ/ГГ</label>
+                                    <input type="text" id="card-expiry" placeholder="12/28" maxlength="5">
+                                </div>
+                                <div class="form-group">
+                                    <label>CVV</label>
+                                    <input type="password" id="card-cvv" placeholder="123" maxlength="4">
+                                </div>
+                            </div>
+                            
+                            <div class="price-summary">
+                                <div class="price-row"><span id="price-per-night">0 ₽ × 1 ночь</span><span id="base-price">0 ₽</span></div>
+                                <div class="price-row"><span>Налоги (10%)</span><span id="taxes">0 ₽</span></div>
+                                <div class="price-row total-row"><span>Итого:</span><span id="total-price">0 ₽</span></div>
+                            </div>
+                            
+                            <button type="submit" class="book-btn">Оплатить и забронировать</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-text">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="ft-about">
+                            <div class="logo"><a href="#"><img src="img/footer-logo.png" alt=""></a></div>
+                            <p>Мы вдохновляем миллионы путешественников по всему миру</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 offset-lg-1">
+                        <div class="ft-contact">
+                            <h6>Контакты</h6>
+                            <ul><li>+7 (862) 345-67-89</li><li>info@amanhotel.ru</li><li>г. Сочи, ул. Курортная, 15</li></ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 offset-lg-1">
+                        <div class="ft-newslatter">
+                            <h6>Рассылка</h6>
+                            <form id="subscribe-form" class="fn-form">
+                                <input type="email" id="subscribe-email" placeholder="Email" required>
+                                <button type="submit"><i class="fa fa-send"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-option">
+            <div class="container"><div class="co-text"><p>© 2024 Aman Hotel. Все права защищены.</p></div></div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div style="text-align:center">
+                <div style="width:50px;height:50px;background:#2ecc71;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-bottom:15px;">
+                    <i class="fa fa-check" style="font-size:25px;color:white;"></i>
+                </div>
+                <h3>Бронирование подтверждено!</h3>
+                <div class="receipt">
+                    <div class="receipt-row"><strong>Номер:</strong> <span id="receipt-number">-</span></div>
+                    <div class="receipt-row"><strong>Гость:</strong> <span id="receipt-name">-</span></div>
+                    <div class="receipt-row"><strong>Номер:</strong> <span id="receipt-room">-</span></div>
+                    <div class="receipt-row"><strong>Даты:</strong> <span id="receipt-dates">-</span></div>
+                    <div class="receipt-row"><strong>Ночей:</strong> <span id="receipt-nights">-</span></div>
+                    <div class="receipt-row receipt-total"><strong>Итого:</strong> <span id="receipt-total">-</span></div>
+                </div>
+                <button onclick="closeModal()" class="book-btn" style="margin-top:10px;">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        // ВСЕ 9 КАТЕГОРИЙ НОМЕРОВ
+        const roomData = {
+            // Существующие
+            'aman-suite': {
+                name: 'Гранд Супериор', price: 15900, area: '40 кв.м', capacity: '2 чел', bed: 'King Size',
+                description: 'Просторный номер с современным дизайном и панорамным видом на город.',
+                images: ['img/room/1_1.png', 'img/room/1_2.png', 'img/room/1_3.png'],
+                amenities: ['Wi-Fi', 'Телевизор', 'Кондиционер', 'Мини-бар', 'Сейф', 'Халат', 'Тапочки']
+            },
+            'deluxe-room': {
+                name: 'Авторский Делюкс', price: 20800, area: '55 кв.м', capacity: '3 чел', bed: 'King Size',
+                description: 'Элегантный номер с авторским дизайном и роскошной ванной комнатой с джакузи.',
+                images: ['img/room/2_1.png', 'img/room/2_2.png', 'img/room/2_3.png'],
+                amenities: ['Wi-Fi', 'Телевизор', 'Кондиционер', 'Мини-бар', 'Джакузи', 'Халат', 'Тапочки']
+            },
+            'double-room': {
+                name: 'Исторический Люкс', price: 26700, area: '60 кв.м', capacity: '4 чел', bed: 'King Size',
+                description: 'Уникальный номер с антикварной мебелью и историческим интерьером.',
+                images: ['img/room/3_1.png', 'img/room/3_2.png', 'img/room/3_3.png'],
+                amenities: ['Wi-Fi', 'Телевизор', 'Кондиционер', 'Мини-бар', 'Антикварная мебель', 'Камин']
+            },
+            'luxury-room': {
+                name: 'Люкс Метрополь', price: 30000, area: '80 кв.м', capacity: '4 чел', bed: 'King Size',
+                description: 'Роскошный люкс с отдельной гостиной и панорамными окнами.',
+                images: ['img/room/4_1.png', 'img/room/4_2.png', 'img/room/4_3.png'],
+                amenities: ['Wi-Fi', 'Телевизор', 'Кондиционер', 'Мини-бар', 'Гостиная', 'Рабочая зона']
+            },
+            'room-with-view': {
+                name: 'Премьер Люкс', price: 33000, area: '95 кв.м', capacity: '4 чел', bed: 'King Size',
+                description: 'Премиальный люкс с захватывающим панорамным видом на море.',
+                images: ['img/room/5_1.png', 'img/room/5_2.png', 'img/room/5_3.png'],
+                amenities: ['Wi-Fi', 'Телевизор', 'Кондиционер', 'Мини-бар', 'Панорамные окна', 'Терраса']
+            },
+            // НОВЫЕ КАТЕГОРИИ
+            'representative': {
+                name: 'Представительский', price: 38000, area: '35 кв.м', capacity: '3 чел', bed: 'King Size',
+                description: 'Стильный номер для деловых людей. Сейф с электронным замком, USB-порты у стола и прикроватных тумбочек.',
+                images: ['img/room/6_1.png', 'img/room/6/2.png', 'img/room/6.3.png'],
+                amenities: ['Wi-Fi', 'Телевизор', 'Кондиционер', 'Мини-бар', 'Сейф с электронным замком', 'USB-порты', 'Рабочая зона']
+            },
+            'author-representative': {
+                name: 'Авторский Представительский', price: 42000, area: '35 кв.м', capacity: '2 чел', bed: 'King Size',
+                description: 'Эксклюзивный номер с косметическими средствами премиум-класса Lalique для максимального ухода.',
+                images: ['img/room/7_1.png', 'img/room/7_2.png', 'img/room/7_3.png'],
+                amenities: ['Wi-Fi', 'Телевизор', 'Кондиционер', 'Мини-бар', 'Косметика Lalique', 'Премиальный уход', 'Халат']
+            },
+            'small-view': {
+                name: 'Посольский Люкс', price: 60000, area: '130 кв.м', capacity: '4 чел', bed: 'King Size',
+                description: 'Самый роскошный номер с сауной, террасой и бильярдом.',
+                images: ['img/room/8_1.png', 'img/room/8_2.png', 'img/room/8_3.png'],
+                amenities: ['Wi-Fi', 'Телевизор', 'Кондиционер', 'Мини-бар', 'Сауна', 'Терраса', 'Бильярд', 'Кинозал']
+            },
+            'big-luxury': {
+                name: 'Люкс Большой', price: 64000, area: '60 кв.м', capacity: '4 чел', bed: 'King Size',
+                description: 'Просторный люкс с косметикой Lalique, халатами и полотенцами из премиального хлопка.',
+                images: ['img/room/9_1.png', 'img/room/9_2.png', 'img/room/9_3.png'],
+                amenities: ['Wi-Fi', 'Телевизор', 'Кондиционер', 'Мини-бар', 'Косметика Lalique', 'Халаты премиум', 'Полотенца из премиального хлопка']
+            }
+        };
+
+        let currentRoom = null;
+        let currentImages = [];
+        let currentIndex = 0;
+
+        $(document).ready(function() {
+            let roomId = new URLSearchParams(window.location.search).get('room');
+            
+            // Маппинг для новых категорий
+            const roomMapping = {
+                'representative': 'representative',
+                'author-representative': 'author-representative',
+                'big-luxury': 'big-luxury'
+            };
+            
+            if (!roomId || !roomData[roomId]) {
+                // Проверяем маппинг
+                if (roomMapping[roomId]) {
+                    roomId = roomMapping[roomId];
+                } else {
+                    roomId = 'aman-suite';
+                }
+            }
+            
+            loadRoom(roomId);
+            initForm();
+        });
+
+        function loadRoom(roomId) {
+            currentRoom = roomData[roomId];
+            if (!currentRoom) return;
+            
+            currentImages = currentRoom.images;
+            
+            $('#room-name, #room-title, #room-name-span').text(currentRoom.name);
+            $('#room-price').html(currentRoom.price.toLocaleString() + ' ₽<span>/ночь</span>');
+            $('#room-description').text(currentRoom.description);
+            
+            $('#specs').html(`
+                <div class="spec"><i class="fa fa-arrows-alt"></i><strong>${currentRoom.area}</strong><span>Площадь</span></div>
+                <div class="spec"><i class="fa fa-users"></i><strong>${currentRoom.capacity}</strong><span>Вместимость</span></div>
+                <div class="spec"><i class="fa fa-bed"></i><strong>${currentRoom.bed}</strong><span>Кровать</span></div>
+                <div class="spec"><i class="fa fa-star"></i><strong>4.9 ★</strong><span>Рейтинг</span></div>
+            `);
+            
+            $('#amenities').html(currentRoom.amenities.map(a => `<span class="amenity">✓ ${a}</span>`).join(''));
+            initSlider();
+        }
+
+        function initSlider() {
+            $('#main-slide').attr('src', currentImages[0]);
+            $('#slide-counter').text(`1 / ${currentImages.length}`);
+            
+            $('#thumbnails').html(currentImages.map((img, i) => `<img src="${img}" class="thumbnail ${i === 0 ? 'active' : ''}" data-index="${i}">`).join(''));
+            
+            $('.thumbnail').on('click', function() {
+                currentIndex = $(this).data('index');
+                updateSlider();
+            });
+            
+            $('#prev-slide').on('click', () => {
+                currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+                updateSlider();
+            });
+            
+            $('#next-slide').on('click', () => {
+                currentIndex = (currentIndex + 1) % currentImages.length;
+                updateSlider();
+            });
+            
+            function updateSlider() {
+                $('#main-slide').attr('src', currentImages[currentIndex]);
+                $('#slide-counter').text(`${currentIndex + 1} / ${currentImages.length}`);
+                $('.thumbnail').removeClass('active').eq(currentIndex).addClass('active');
+            }
+        }
+
+        function initForm() {
+            const today = new Date().toISOString().split('T')[0];
+            $('#check-in').attr('min', today);
+            
+            $('#adults-plus').click(() => {
+                let v = parseInt($('#adults').val());
+                if (v < 6) { $('#adults').val(v + 1); calculatePrice(); }
+            });
+            $('#adults-minus').click(() => {
+                let v = parseInt($('#adults').val());
+                if (v > 1) { $('#adults').val(v - 1); calculatePrice(); }
+            });
+            $('#children-plus').click(() => {
+                let v = parseInt($('#children').val());
+                if (v < 4) $('#children').val(v + 1);
+            });
+            $('#children-minus').click(() => {
+                let v = parseInt($('#children').val());
+                if (v > 0) $('#children').val(v - 1);
+            });
+            
+            $('#check-in, #check-out').on('change', calculatePrice);
+            
+            $('#booking-form').on('submit', async (e) => {
+                e.preventDefault();
+                const priceData = calculatePrice();
+                if (!priceData) { alert('Выберите даты'); return; }
+                
+                const bookingData = {
+                    full_name: $('#guest-name').val(),
+                    email: $('#guest-email').val(),
+                    phone: $('#guest-phone').val(),
+                    room_type: currentRoom.name,
+                    check_in: $('#check-in').val(),
+                    check_out: $('#check-out').val(),
+                    adults: $('#adults').val(),
+                    children: $('#children').val(),
+                    total_price: priceData.total,
+                    card_number: $('#card-number').val().replace(/\s/g, ''),
+                    card_expiry: $('#card-expiry').val(),
+                    card_cvv: $('#card-cvv').val()
+                };
+                
+                const res = await fetch('/api/bookings', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(bookingData)
+                });
+                const result = await res.json();
+                
+                if (result.success) {
+                    $('#receipt-number').text(result.booking_number);
+                    $('#receipt-name').text(bookingData.full_name);
+                    $('#receipt-room').text(currentRoom.name);
+                    $('#receipt-dates').text(`${bookingData.check_in} — ${bookingData.check_out}`);
+                    $('#receipt-nights').text(priceData.nights);
+                    $('#receipt-total').text(`${priceData.total.toLocaleString()} ₽`);
+                    $('#successModal').fadeIn();
+                    $('#booking-form')[0].reset();
+                    calculatePrice();
+                } else {
+                    alert(result.message || 'Ошибка бронирования');
+                }
+            });
+            
+            $('#subscribe-form').on('submit', async (e) => {
+                e.preventDefault();
+                const email = $('#subscribe-email').val();
+                await fetch('/api/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                alert('Подписка оформлена!');
+                $('#subscribe-email').val('');
+            });
+        }
+
+        function calculatePrice() {
+            if (!currentRoom) return null;
+            const checkIn = $('#check-in').val();
+            const checkOut = $('#check-out').val();
+            
+            if (checkIn && checkOut) {
+                const nights = Math.ceil((new Date(checkOut) - new Date(checkIn)) / (1000*60*60*24));
+                if (nights > 0) {
+                    const base = currentRoom.price * nights;
+                    const taxes = Math.round(base * 0.1);
+                    const total = base + taxes;
+                    $('#price-per-night').html(`${currentRoom.price.toLocaleString()} ₽ × ${nights} ночь`);
+                    $('#base-price').html(`${base.toLocaleString()} ₽`);
+                    $('#taxes').html(`${taxes.toLocaleString()} ₽`);
+                    $('#total-price').html(`${total.toLocaleString()} ₽`);
+                    return { nights, total };
+                }
+            }
+            $('#price-per-night').html(`0 ₽ × 0 ночь`);
+            $('#base-price').html(`0 ₽`);
+            $('#taxes').html(`0 ₽`);
+            $('#total-price').html(`0 ₽`);
+            return null;
+        }
+
+        function closeModal() { $('#successModal').fadeOut(); }
+    </script>
+</body>
+</html>

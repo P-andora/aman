@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Sona Template">
+    <meta name="keywords" content="Sona, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sona | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/flaticon.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <style>
+/* ===== УЛУЧШЕНИЕ СТРАНИЦЫ "О НАС" ===== */
+
+/* Общие стили для страницы */
+.aboutus-page-section {
+    padding: 80px 0;
+    background: #fff;
+}
+
+/* Блок с заголовком и преимуществами */
+.about-page-text {
+    margin-bottom: 60px;
+}
+
+/* Заголовок */
+.ap-title h2 {
+    font-size: 42px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.ap-title h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: #c7a17a;
+}
+
+.ap-title p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+    margin-top: 20px;
+}
+
+/* Список преимуществ */
+.ap-services {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.ap-services li {
+    padding: 12px 0;
+    font-size: 16px;
+    color: #444;
+    border-bottom: 1px solid #eee;
+    transition: all 0.3s ease;
+}
+
+.ap-services li:last-child {
+    border-bottom: none;
+}
+
+.ap-services li i {
+    color: #c7a17a;
+    margin-right: 12px;
+    font-size: 18px;
+}
+
+.ap-services li:hover {
+    transform: translateX(10px);
+    color: #c7a17a;
+}
+
+/* Карточки услуг (3 блока с фото) */
+.about-page-services {
+    margin: 60px 0;
+}
+
+.ap-service-item {
+    position: relative;
+    height: 280px;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+}
+
+.ap-service-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.ap-service-item .api-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30px 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    text-align: center;
+}
+
+.ap-service-item .api-text h3 {
+    color: white;
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.ap-service-item:hover .api-text h3 {
+    transform: translateY(-5px);
+}
+
+/* Видео секция */
+.video-section {
+    position: relative;
+    padding: 100px 0;
+    background-attachment: fixed;
+    background-size: cover;
+    text-align: center;
+}
+
+.video-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+}
+
+.video-text {
+    position: relative;
+    z-index: 2;
+    color: white;
+}
+
+.video-text h2 {
+    font-size: 38px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    animation: fadeInUp 0.8s ease;
+}
+
+.video-text p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    animation: fadeInUp 0.8s ease 0.2s forwards;
+    opacity: 0;
+}
+
+.play-btn {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    background: rgba(199,161,122,0.9);
+    border-radius: 50%;
+    line-height: 70px;
+    text-align: center;
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.play-btn:hover {
+    transform: scale(1.1);
+    background: #c7a17a;
+}
+
+.play-btn img {
+    width: 30px;
+    vertical-align: middle;
+}
+
+/* Галерея */
+.gallery-section {
+    padding: 80px 0;
+    background: #f8f9fa;
+}
+
+.gallery-item {
+    position: relative;
+    height: 280px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    transition: all 0.4s ease;
+}
+
+.gallery-item.large-item {
+    height: 580px;
+}
+
+.gallery-item:hover {
+    transform: scale(1.02);
+}
+
+.gallery-item .gi-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    text-align: center;
+}
+
+.gallery-item .gi-text h3 {
+    color: white;
+    font-size: 20px;
+    margin: 0;
+}
+
+/* Анимации */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(199,161,122,0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(199,161,122,0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(199,161,122,0);
+    }
+}
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+    .ap-title h2 {
+        font-size: 32px;
+        text-align: center;
+    }
+    
+    .ap-title h2::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .ap-title p {
+        text-align: center;
+    }
+    
+    .ap-services {
+        margin-top: 30px;
+    }
+    
+    .video-text h2 {
+        font-size: 28px;
+    }
+    
+    .video-text p {
+        font-size: 16px;
+    }
+    
+    .gallery-item.large-item {
+        height: 280px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ap-service-item {
+        height: 220px;
+    }
+    
+    .gallery-item {
+        height: 220px;
+    }
+}
+</style>
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Section Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="canvas-open">
+        <i class="icon_menu"></i>
+    </div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="canvas-close">
+            <i class="icon_close"></i>
+        </div>
+        <div class="search-icon search-switch">
+            <i class="icon_search"></i>
+        </div>
+        <div class="header-configure-area">
+            <a href="#" class="bk-btn">Забронируй сейсчас</a>
+        </div>
+        <nav class="mainmenu mobile-menu">
+            <ul>
+                <li class="active"><a href="./index.html">Главная</a></li>
+                <li><a href="./rooms.html">Номера</a></li>
+                <li><a href="./about-us.html">О нас</a></li>
+                <li><a href="./blog-details.html">Подробности</a> </li>
+                <li><a href="./blog.html">Новости</a></li>
+                <li><a href="./contact.html">Контакты</a></li>
+            </ul>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+        <div class="top-social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-tripadvisor"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
+        <ul class="top-widget">
+            <li><i class="fa fa-phone"></i> (12) 345 67890</li>
+            <li><i class="fa fa-envelope"></i> viceroy@bk.ru</li>
+        </ul>
+    </div>
+    <!-- Offcanvas Menu Section End -->
+
+    <!-- Header Section Begin -->
+    <header class="header-section header-normal">
+        <div class="top-nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="tn-left">
+                            <li><i class="fa fa-phone"></i> (12) 345 67890</li>
+                            <li><i class="fa fa-envelope"></i> Viceroy@bk.ru</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="tn-right">
+                            <div class="top-social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-tripadvisor"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </div>
+                            <a href="#" class="bk-btn">Бронировать</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <div class="logo">
+                            <a href="./index.html">
+                                <img src="img/logo.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-10">
+                        <div class="nav-menu">
+                            <nav class="mainmenu">
+                                <ul>
+                                    <li><a href="./index.html">Главная</a></li>
+                                    <li><a href="./rooms.html">Номера</a></li>
+                                    <li class="active"><a href="./about-us.html">О нас</a></li>
+                                <li><a href="./blog-details.html">Подробности</a> </li>
+                                    <li><a href="./blog.html">Новости</a></li>
+                                    <li><a href="./contact.html">Контакты</a></li>
+                                </ul>
+                            </nav>
+                            <div class="nav-right search-switch">
+                                <i class="icon_search"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Breadcrumb Section Begin -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <h2>О нас</h2>
+                        <div class="bt-option">
+                            <a href="./index.html">Главная</a>
+                            <span>О нас</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section End -->
+
+    <!-- About Us Page Section Begin -->
+    <section class="aboutus-page-section spad">
+        <div class="container">
+            <div class="about-page-text">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="ap-title">
+                            <h2>Добро пожаловать в Viceroy.</h2>
+                            <p>Этот отель, построенный в 1910 году в эпоху Прекрасной эпохи, расположен в центре Парижа, недалеко от туристических достопримечательностей города. К услугам гостей со вкусом оформленные номера.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 offset-lg-1">
+                        <ul class="ap-services">
+                            <li><i class="icon_check"></i> Скидка 20% На Проживание.</li>
+                            <li><i class="icon_check"></i> Ежедневный бесплатный завтрак.</li>
+                            <li><i class="icon_check"></i> Стирка трёх предметов белья в день.</li>
+                            <li><i class="icon_check"></i> Бесплатный Wi-Fi.</li>
+                            <li><i class="icon_check"></i> Скидка 20% на F&B</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="about-page-services">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="ap-service-item set-bg" data-setbg="img/about/about-p1.jpg">
+                            <div class="api-text">
+                                <h3>Услуги ресторанов</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="ap-service-item set-bg" data-setbg="img/about/about-p2.jpg">
+                            <div class="api-text">
+                                <h3>Travel & Camping</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="ap-service-item set-bg" data-setbg="img/about/about-p3.jpg">
+                            <div class="api-text">
+                                <h3>Event & Party</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Us Page Section End -->
+
+    <!-- Video Section Begin -->
+    <section class="video-section set-bg" data-setbg="img/video-bg.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="video-text">
+                        <h2>Откройте для себя наш отель и услуги.</h2>
+                        <p>Сейчас сезон ураганов, но мы едем на остров Хилтон-Хед-Айленд!</p>
+                        <a href="https://video-preview.s3.yandex.net/cwv8QQEAAAA.mp4" class="play-btn video-popup"><img
+                                src="img/play.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Video Section End -->
+
+    <!-- Gallery Section Begin -->
+    <section class="gallery-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Наша галерея</span>
+                        <h2>Познакомьтесь с нашей работой</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="gallery-item set-bg" data-setbg="img/gallery/gallery-1.jpg">
+                        <div class="gi-text">
+                            <h3>Room Luxury</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="gallery-item set-bg" data-setbg="img/gallery/gallery-3.jpg">
+                                <div class="gi-text">
+                                    <h3>Deluxe Room</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="gallery-item set-bg" data-setbg="img/gallery/gallery-4.jpg">
+                                <div class="gi-text">
+                                    <h3>Room With View </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="gallery-item large-item set-bg" data-setbg="img/gallery/gallery-2.jpg">
+                        <div class="gi-text">
+                            <h3>Double Room</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Gallery Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-text">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="ft-about">
+                            <div class="logo">
+                                <a href="#">
+                                    <img src="img/footer-logo.png" alt="">
+                                </a>
+                            </div>
+                            <p>Мы вдохновляем миллионы путешественников и привлекаем их внимание на 90 местных веб-сайтах</p>
+                            <div class="fa-social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-tripadvisor"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 offset-lg-1">
+                        <div class="ft-contact">
+                            <h6>Связаться с нами</h6>
+                            <ul>
+                                <li>(12) 345 67890</li>
+                                <li>viceroy@bk.ru</li>
+                                <li>856 Cordia Extension Apt. 356, Lake, United State</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 offset-lg-1">
+                        <div class="ft-newslatter">
+                            <h6>New latest</h6>
+                            <p>Получайте последние обновления и предложения.</p>
+                            <form action="#" class="fn-form">
+                                <input type="text" placeholder="Email">
+                                <button type="submit"><i class="fa fa-send"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-option">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <ul>
+                            <li><a href="#">Контакты </a></li>
+                            <li><a href="#">Условия использования</a></li>
+                            <li><a href="#">Конфиденциальность</a></li>
+                            <li><a href="#">Экологическая политика</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="co-text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> Все права защищены <i class="fa fa-heart" aria-hidden="true"></i></a>
+  <!-- Link back can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search model Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch"><i class="icon_close"></i></div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search model end -->
+<script>
+// Подписка на рассылку
+document.querySelector('.fn-form')?.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const emailInput = this.querySelector('input');
+    const email = emailInput?.value.trim();
+    
+    if (!email) {
+        alert('Введите email');
+        return;
+    }
+    
+    try {
+        const response = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+        });
+        const result = await response.json();
+        alert(result.message);
+        if (result.success && emailInput) emailInput.value = '';
+    } catch (error) {
+        alert('Ошибка подписки');
+    }
+});
+</script>
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+
+</html>
